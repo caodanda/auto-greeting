@@ -1,0 +1,33 @@
+{
+  "name": "Boss Greeting",
+  "version": "1.0",
+  "manifest_version": 2, 
+  "description": "自动打招呼",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "BOSS插件",
+    "default_icon": "./icon/hi.png"
+  },
+  "background":{
+    "scripts":["./background/main.js","./background/axios.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://zhipin.com/*",
+        "https://www.zhipin.com/web/geek/chat?ka=header-message",
+        "https://www.baidu.com/"
+      ],
+      "js": ["./content/boss.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": ["./inject/inject.js"],
+  "permissions": [
+    "https://www.baidu.com/",
+    "storage", 
+    "webRequest", 
+		"webRequestBlocking", 
+    "<all_urls>"
+  ]
+}
